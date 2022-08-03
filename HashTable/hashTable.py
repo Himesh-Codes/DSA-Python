@@ -30,7 +30,8 @@ cryptographic applications
 indexing data is required
 """
 
-from operator import index, mod
+from collections import OrderedDict
+from operator import mod
 from hashtype import HashTableInstanceArgs, hashTypes
 DIVIDE_HASH_DIVISOR = 777
 MULIPLY_HASH_VALUE = 52
@@ -38,8 +39,8 @@ MULIPLY_HASH_VALUE = 52
 class HashTableFactory():
     def __init__(self, **kwargs: HashTableInstanceArgs):
        self.__capacity = kwargs['capacity']
-       self.__hashFunction: hashTypes = kwargs['hashType']
-       self.__hashTable = list([],) *  self.__capacity
+       self.__hashFunction: hashTypes = kwargs['hashType'] if 'hashType' in kwargs else hashTypes.simpleHash
+       self.__hashTable = OrderedDict()
         
     def hashFuncion(self, value):
         if self.__hashFunction:
@@ -53,8 +54,9 @@ class HashTableFactory():
                 return self.getHashValue(value)
                 
     def getHashValue(self, value):
-        value = hash(value)
-        return value
+        # since hash on int will be same outoput we convert every input to string
+        value = str(value)
+        return str(hash(value))
     
     def getDivideHashValue(self, value):
         return mod(value, DIVIDE_HASH_DIVISOR)
@@ -65,15 +67,15 @@ class HashTableFactory():
     def addValue(self, key, data):
         index = self.hashFuncion(key)
         if len(self.__hashTable) <=  self.__capacity:
-            if not self.__hashTable[index]:
-                self.__hashTable[index] = data
+            if index not in self.__hashTable:
+               self.__hashTable[index] = data
             # multiple hashing on hashed index until free index got
             else:
                 index = self.hashFuncion(index)
-                while(not self.__hashTable[index]):
-                     index = self.hashFuncion(index)
+                while(index in self.__hashTable):
+                    index = self.hashFuncion(index)
                 self.__hashTable[index] = data
-                    
+            return index
         else:
             raise OverflowError('Capacity Exceeds')
         
@@ -83,4 +85,17 @@ class HashTableFactory():
         
     def getItemByKey(self, key):
         index = self.hashFuncion(key)
-        return self.__hashTable[index]
+        while index in self.__hashTable:
+            yield self.__hashTable[index]
+            index = self.hashFuncion(index)
+    
+# Testing 
+hashFactory  = HashTableFactory(capacity=5)
+print(hashFactory.addValue(12, 43))
+print(hashFactory.addValue(32, 88))
+print(hashFactory.addValue(32, 900))
+for item in hashFactory.getItemByKey(12):
+    print(item)
+for item in hashFactory.getItemByKey(32):
+    print(item)
+    
