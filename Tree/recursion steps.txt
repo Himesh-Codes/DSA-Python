@@ -1,0 +1,6 @@
+1. Get simplest scenarios, with all possible angles, and find answer
+2. Play around examples and look on answer
+3. Relate hard to easy case
+4. Find relations and do the recursive code
+5. Right code example max path on grid(n,m) = { 1 if n = and m =1
+                                                grid(n-1) + grid(m-1)

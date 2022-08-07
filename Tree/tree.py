@@ -94,20 +94,20 @@ class TreeTraversal():
             print(f'{str(node.data)} ->', end='')
             
 # Testing
-tree = TreeTraversal(Node(1))
-two = Node(2)
-three = Node(3)
-four = Node(4)
-five = Node(5)
+# tree = TreeTraversal(Node(1))
+# two = Node(2)
+# three = Node(3)
+# four = Node(4)
+# five = Node(5)
 
-tree.getRoot().right = two
-tree.getRoot().left = three
-tree.getRoot().left.left = four
-tree.getRoot().left.right = five
+# tree.getRoot().right = two
+# tree.getRoot().left = three
+# tree.getRoot().left.left = four
+# tree.getRoot().left.right = five
 
-print('Inorder Traversal')
-tree.inOrder()
-print('Preorder Traversal')
-tree.preOrder()
-print('Postorder Traversal')
-tree.postOrder()
+# print('Inorder Traversal')
+# tree.inOrder()
+# print('\nPreorder Traversal')
+# tree.preOrder()
+# print('\nPostorder Traversal')
+# tree.postOrder()
