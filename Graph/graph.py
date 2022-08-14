@@ -54,6 +54,7 @@ class Graph():
         
     # keep log of visited nodes & traverse through the nodes untill every nodes visited
     # It goes from start to max end and back track to root and visit next route
+    # Complexity 0(E+V)
     def dfs(self, startVertex, visitedNodes=None):
         if visitedNodes == None:
             visitedNodes = list()
@@ -66,6 +67,7 @@ class Graph():
     
     # bfs always have visited array and not visited queue
     # adjacent vertex items pushed to queue and visit the items of queue from front
+    # Complexity 0(E+V)
     def bfs(self, startVetex, visited: list = None, notVisited: list = None):
         if visited == None and notVisited == None:
             visited = list()
