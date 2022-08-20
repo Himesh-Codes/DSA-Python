@@ -71,7 +71,7 @@ class ChartFlight(object):
                 if temporaryPrices[destinationPlace] > priceArray[sourcePlace] + cost:
                     temporaryPrices[destinationPlace] = priceArray[sourcePlace] + cost
             priceArray = temporaryPrices
-        return priceArray, priceArray[destinationPlace]
+        return priceArray, priceArray[destination]
     
 # Testing
 flights = [[0,1,100], [0,2,500], [1,2,100]]
