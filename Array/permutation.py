@@ -45,6 +45,8 @@ class Permutation:
         return resultantArray
 
 # Testing
-testArray = [1, 2, 3, 4]
+testArray = [1, 2, 3]
 perm = Permutation()
+print(perm.permutation(testArray))
+testArray = [1, 2, 1]
 print(perm.permutation(testArray))

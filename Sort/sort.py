@@ -68,6 +68,7 @@ class ArraySort():
         return array
     
     #Divide and conquer rule used, split the array into two sub arrays
+    # Each subarray of length 1 is sorted with compare other subarray elements.
     #Complexity : O(n log(n))
     #The main array is placed with each element from left with comparing elements of two arrays
     #Check last any elements in any of the subarray is needed to be traversed, if then runs second loop
@@ -103,7 +104,29 @@ class ArraySort():
                 rightIndex += 1
                 currentIndex += 1
         return array
-                
+    
+    # Quick sort with : Divide and Conquer, Swapping
+    # For space complexity reduce we use same array, Swapping technique. 
+    # Complexity : O(nlog(n))
+    # We use a single quick sort function with recursion
+    # The rightmost element of array is always pivot, in recursion we pass the leftindex, rightindex, and array
+    # PivotIndex is declared as rightMost index, lastSwapIndex/ storeIndex as leftmost index.
+    # Do loop in recursion, until leftIndex < rightIndex as edge case
+    @staticmethod
+    def quickSort(array, leftIndex, rightIndex):
+        if leftIndex < rightIndex:
+            storeIndex = leftIndex
+            pivotIndex = rightIndex
+            for index in range(leftIndex, rightIndex):
+                # elements less than pivot elements placed on left on pivot element index
+                if array[index] < array[pivotIndex]:
+                    array[index], array[storeIndex] = array[storeIndex], array[index]
+                    storeIndex += 1
+            # swapped pivot element to storeIndex that is rightMost of lesser elements
+            array[pivotIndex], array[storeIndex] = array[storeIndex], array[pivotIndex]
+            ArraySort.quickSort(array, leftIndex, storeIndex-1)
+            ArraySort.quickSort(array, storeIndex+1, rightIndex)
+        return array
     
 # Testing
 testArray = [-1, 34, 6, 0, 23, 45]
@@ -118,3 +141,7 @@ testArray2 = [-2, -4, 7, 0, 180, 45, 87, 51, 3, 17]
 print(testArray2)
 print("Merge sort")
 print(ArraySort.mergeSort(testArray2))
+testArray3 = [9, 14, 51, 0, 3, 11, -2, 4]
+print(testArray3)
+print("Quick sort")
+print(ArraySort.quickSort(testArray3, 0, len(testArray3)-1))
