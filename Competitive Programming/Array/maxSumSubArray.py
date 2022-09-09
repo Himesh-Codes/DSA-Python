@@ -5,7 +5,10 @@ Sliding window approach
 In which a pointer in start and end is incresed as per condition
 Steps:
 1. max_sum_so_far, max_sum_here, start, end, shiftindex
-
+We iterate the array 
+find the sum, and check if the current number is positive and the sum is negative then we make the sum = 0
+Then we add the element value with item, to find new sum
+Since negative number makes the sum reduced we ignore and shift  start index.
 """
 
 

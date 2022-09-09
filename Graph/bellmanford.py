@@ -50,9 +50,6 @@ function bellmanFord(G, S)
 
 """
 
-from os import pread
-
-
 class ChartFlight(object):
     def __init__(self, **kwargs):
         self.__flights: list[list[int]] = kwargs['flights'] if 'flights' in kwargs else []
