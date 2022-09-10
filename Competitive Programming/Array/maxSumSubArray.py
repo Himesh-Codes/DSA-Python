@@ -3,6 +3,11 @@ Kadane's algorthim
 Sliding window approach
 -------------------
 In which a pointer in start and end is incresed as per condition
+Edge case:
+- If the sum before adding each (positive number) element is a negative value sum then only total sum reduced.
+- So we discard the negative and make sum = 0, before add positive number.
+- On each iteration check first the sum is less than zero and we have a positive number on this iteration.
+- If negative number array item greater than, negative sum we have, we make sum = 0 before adding.
 Steps:
 1. max_sum_so_far, max_sum_here, start, end, shiftindex
 We iterate the array 
