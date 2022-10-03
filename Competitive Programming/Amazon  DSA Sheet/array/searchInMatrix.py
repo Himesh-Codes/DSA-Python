@@ -47,7 +47,7 @@ class Solution:
             rowIndex = 0
             colIndex = M - 1
             
-            while rowIndex < N and colIndex < M:
+            while rowIndex < N and colIndex > 0:
                 if mat[rowIndex][colIndex] == X:
                     return 1
                 elif mat[rowIndex][colIndex] > X:

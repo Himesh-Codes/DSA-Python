@@ -47,11 +47,11 @@ class Solution:
                 waterContainerSize = min(maxLeft, maxRight) - arr[left] 
                 waterUnits += waterContainerSize if waterContainerSize > 0 else 0
                
-            # else:
-            #     right -= 1
-            #     maxRight = max(maxRight, arr[right])
-            #     waterContainerSize = min(maxLeft, maxRight) - arr[right]
-            #     waterUnits += waterContainerSize if waterContainerSize > 0 else 0
+            else:
+                right -= 1
+                maxRight = max(maxRight, arr[right])
+                waterContainerSize = min(maxLeft, maxRight) - arr[right]
+                waterUnits += waterContainerSize if waterContainerSize > 0 else 0
              
         return waterUnits
     
