@@ -49,4 +49,4 @@ class NextPermutation:
             
 # Testing
 solve = NextPermutation()
-print(solve.nextPermutation([1,2,3,5,4]))
+print(solve.nextPermutation([1,2,3,5,4,6]))
