@@ -26,6 +26,24 @@ Tarjan's Algorithm is based on the depth-first search algorithm only single time
 The algorithm runs in linear time i.e. O(V+E).
 Low-link array and discovery array, DFS
 
+Concepts: 
+    - discovery = {} is the discovery time of each nodes.
+    - low = {} is the lowest discovery time of every nodes connected. So if we have a ancestor node connected (backedge)
+        then we can assure back edge is there confirmed.
+        
+    - stack (trackStack) = {} - used to keep a track on nodes traversed in dfs and not backtracked.
+        If on dfs if we came to a already visited node and not backtracked ie, still a backedge connection is there.
+    - visited = {} is track of components visited.
+        
+Edge cases:
+1. If backedge found a item in stack and already visted.Then low time of currentnode is updated with 
+    min(vistitedNode[discovery], currentNode[low]).
+2. On every backtrack after dfs (function), we update low value with min(vistitedNode[low], currentNode[low])..
+3. Pop the current node from stack if discovery and low time are same.
+4. If the low value and the disc value same it will be the head of an scc. So we will print whatever in stack.
+ Since the stack is build if we found an item with same low and disc value, we pop the items from that index 
+ so the items in stack after that is having same low value is scc.
+
 Strongly Connected Components Applications
 -----------------------------------
 Vehicle routing applications
