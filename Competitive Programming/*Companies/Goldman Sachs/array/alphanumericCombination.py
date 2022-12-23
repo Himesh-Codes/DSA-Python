@@ -28,11 +28,13 @@ class Solution:
         result = []
         # convert into array
         inputArray = [*inputStr]
+        noResult = False
         
         def combinations(input, indexCount,  combinationStr):
             
             if indexCount == len(inputStr) and combinationStr not in result:
                 result.append(combinationStr)
+                print(combinationStr)
                 return
             
             combination = combinationStr.copy()
@@ -44,10 +46,14 @@ class Solution:
                     if input[0] == '0': 
                         number = combination.pop()
                         number += input.pop(0)
-                        combination.append(number)
-                        indexCount +=1 
+                        if 0 < int(number) <= 26:
+                            indexCount += 1
+                            combination.append(number)
+                        else:
+                            noResult = True
+                            return
                         
-                    combinations(input.copy(), indexCount, combination.copy())
+                    if not noResult: combinations(input.copy(), indexCount, combination.copy())
                   
                     # we can make a combination of index , index+1
                     if len(number) < 2 and len(input) >=1:
@@ -66,7 +72,7 @@ class Solution:
                     combinations(input.copy(), indexCount, combination.copy())
 
         combinations(inputArray.copy(), 0, [])
-        return len(result)
+        return len(result) if not noResult else 0
 
 # Testing
 inputStr = '2910'
@@ -75,4 +81,6 @@ print(sol.checkTheAlphanumericCombinations(inputStr))
 inputStr = '2112'
 print(sol.checkTheAlphanumericCombinations(inputStr))
 inputStr = '923014'
+print(sol.checkTheAlphanumericCombinations(inputStr))
+inputStr = '314241414346644541652433556252665423311365641144551513243152623366656365516344432643125444163114545266353646436155611516162544434342253552516212225664435126342612366162364456225214466124311533435356363'
 print(sol.checkTheAlphanumericCombinations(inputStr))

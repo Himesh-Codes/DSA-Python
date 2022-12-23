@@ -123,7 +123,8 @@ binaryTree.insertFromRoot(7)
 binaryTree.insertFromRoot(5)
 binaryTree.insertFromRoot(35)
 
-print('Post Order')
+
+print('Pre Order')
 binaryTree.preOrder()
 
 print('\nIn Order')
